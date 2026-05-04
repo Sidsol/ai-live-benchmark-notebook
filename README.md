@@ -36,3 +36,16 @@ uv run jupyter lab notebooks\live_model_benchmark.ipynb
 
 Run all cells. Because this notebook is live-only, every selected prompt is sent to each configured provider and may incur provider costs. Set `AIMBT_LIVE_PROMPT_CASE_LIMIT=3` while testing, or `all` to run the full built-in prompt suite.
 
+## Evaluation scope
+
+The notebook uses a lightweight text-chat evaluation flow:
+
+- Runs each candidate model against the same shared prompt suite.
+- Records latency, success/error status, response previews, raw responses, and token usage when providers return it.
+- Scores output quality with a simple expected-term rubric for fast automated observations.
+- Combines live prompt quality, public benchmark evidence, reliability, latency fit, and risk adjustment into a weighted decision matrix.
+
+The quality score is not a formal correctness proof. It is a classroom-friendly automated observation that can be strengthened later with task-specific graders, human review, RAGAS for retrieval-augmented generation evaluation, MLflow for experiment tracking, or DSPy for prompt/program optimization. Neuro-symbolic validation and formal verification are outside this simple notebook's scope.
+
+The public benchmark evidence table includes editable source notes. Replace the placeholder scores and notes with the current cited sources you use for your submission.
+
