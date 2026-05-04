@@ -72,7 +72,7 @@ AIMBT_DSPY_EVAL_LIMIT=3
 AIMBT_DSPY_MODEL_NAME=openai/gpt-5.5
 ```
 
-MLflow is local by default. To change the tracking location:
+MLflow is local by default and the notebook only uses experiment tracking plus plain artifact files. It does not register models or call MLflow Model Registry APIs, which avoids registry errors on local file-based tracking. To change the tracking location:
 
 ```env
 AIMBT_MLFLOW_TRACKING_URI=file:///D:/Repos/ai-live-benchmark-notebook/mlruns
