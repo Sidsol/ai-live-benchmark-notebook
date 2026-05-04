@@ -24,6 +24,9 @@ AIMBT_OPENAI_MODEL_NAME=gpt-5.5
 AIMBT_ANTHROPIC_MODEL_NAME=claude-opus-4-7
 AIMBT_GOOGLE_MODEL_NAME=gemini-3.1
 AIMBT_LIVE_PROMPT_CASE_LIMIT=all
+AIMBT_ENABLE_MLFLOW=true
+AIMBT_RUN_RAGAS_EVALS=false
+AIMBT_RUN_DSPY_EVALS=false
 ```
 
 Use provider API model IDs that your account can access. If a model returns `404`, `model_not_found`, or an unsupported-parameter error, update the corresponding `AIMBT_*_MODEL_NAME` value.
@@ -45,7 +48,34 @@ The notebook uses a lightweight text-chat evaluation flow:
 - Scores output quality with a simple expected-term rubric for fast automated observations.
 - Combines live prompt quality, public benchmark evidence, reliability, latency fit, and risk adjustment into a weighted decision matrix.
 
-The quality score is not a formal correctness proof. It is a classroom-friendly automated observation that can be strengthened later with task-specific graders, human review, RAGAS for retrieval-augmented generation evaluation, MLflow for experiment tracking, or DSPy for prompt/program optimization. Neuro-symbolic validation and formal verification are outside this simple notebook's scope.
+The quality score is not a formal correctness proof. It is a classroom-friendly automated observation that can be strengthened with task-specific graders and human review. Neuro-symbolic validation and formal verification are outside this simple notebook's scope.
 
 The public benchmark evidence table includes editable source notes. Replace the placeholder scores and notes with the current cited sources you use for your submission.
+
+## Framework integrations
+
+The notebook includes lightweight support for MLflow, RAGAS, and DSPy:
+
+| Framework | Default | What it does |
+| --- | --- | --- |
+| MLflow | Enabled | Logs local experiment params, metrics, decision weights, invocation summaries, quality scores, benchmark evidence, decision matrix, and risk review to `mlruns\`. |
+| RAGAS | Disabled | Optionally evaluates successful model answers with RAGAS metrics using prompt/reference context. This can make extra evaluator LLM calls. |
+| DSPy | Disabled | Optionally runs a DSPy prompt program against selected prompts and scores those outputs with the same expected-term rubric. This makes extra LLM calls. |
+
+Enable optional framework calls in `.env` only when you want the extra cost:
+
+```env
+AIMBT_RUN_RAGAS_EVALS=true
+AIMBT_RAGAS_EVAL_LIMIT=3
+AIMBT_RUN_DSPY_EVALS=true
+AIMBT_DSPY_EVAL_LIMIT=3
+AIMBT_DSPY_MODEL_NAME=openai/gpt-5.5
+```
+
+MLflow is local by default. To change the tracking location:
+
+```env
+AIMBT_MLFLOW_TRACKING_URI=file:///D:/Repos/ai-live-benchmark-notebook/mlruns
+AIMBT_MLFLOW_EXPERIMENT_NAME=ai-live-benchmark-notebook
+```
 
