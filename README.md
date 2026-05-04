@@ -24,6 +24,7 @@ AIMBT_OPENAI_MODEL_NAME=gpt-5.5
 AIMBT_ANTHROPIC_MODEL_NAME=claude-opus-4-7
 AIMBT_GOOGLE_MODEL_NAME=gemini-3.1
 AIMBT_LIVE_PROMPT_CASE_LIMIT=all
+AIMBT_PROMPT_SUITE_PATH=data/prompt_suite.json
 AIMBT_ENABLE_MLFLOW=true
 AIMBT_RUN_RAGAS_EVALS=false
 AIMBT_RUN_DSPY_EVALS=false
@@ -37,7 +38,24 @@ Use provider API model IDs that your account can access. If a model returns `404
 uv run jupyter lab notebooks\live_model_benchmark.ipynb
 ```
 
-Run all cells. Because this notebook is live-only, every selected prompt is sent to each configured provider and may incur provider costs. Set `AIMBT_LIVE_PROMPT_CASE_LIMIT=3` while testing, or `all` to run the full built-in prompt suite.
+Run all cells. Because this notebook is live-only, every selected prompt is sent to each configured provider and may incur provider costs. Set `AIMBT_LIVE_PROMPT_CASE_LIMIT=3` while testing, or `all` to run the full configured prompt suite.
+
+## Prompt suite
+
+The shared test prompt suite lives outside the notebook at `data\prompt_suite.json`. It currently includes 17 first-party cases adapted from the larger `ai-model-benchmark-tool` starter suite:
+
+- coding prompts
+- reasoning prompts
+- hybrid coding/reasoning prompts
+- synthetic benchmark-aligned prompts for SWE-bench Verified, SWE-bench Pro, HumanEval / LiveCodeBench, AIME / ARC-AGI-2, and GPQA Diamond
+
+The benchmark-aligned prompts are local surrogate tasks, not official benchmark questions. To use a different prompt suite, set:
+
+```env
+AIMBT_PROMPT_SUITE_PATH=data/my_prompt_suite.json
+```
+
+Each prompt case must include `prompt_case_id`, `category`, `benchmark_refs`, `prompt`, and non-empty `expected_terms`.
 
 ## Evaluation scope
 

@@ -1,0 +1,146 @@
+{
+  "id": "starter-suite-v2",
+  "name": "AI Live Benchmark Expanded Starter Suite",
+  "description": "First-party prompt suite covering coding, reasoning, hybrid, and benchmark-aligned synthetic tasks.",
+  "source_reference": "ai-live-benchmark-notebook/data/prompt_suite.json",
+  "license_provenance": "First-party content. No third-party benchmark questions copied.",
+  "contamination_caveat": "Benchmark-aligned cases are synthetic local surrogate tasks, not official benchmark items.",
+  "cases": [
+    {
+      "prompt_case_id": "coding-001",
+      "title": "FizzBuzz Implementation",
+      "category": "coding",
+      "benchmark_refs": [],
+      "prompt": "Write a Python function fizzbuzz(n) that returns 'FizzBuzz' for multiples of 15, 'Fizz' for multiples of 3, 'Buzz' for multiples of 5, and the number as a string otherwise.",
+      "expected_terms": ["def", "fizzbuzz", "FizzBuzz", "Fizz"]
+    },
+    {
+      "prompt_case_id": "coding-002",
+      "title": "CSV Row Counter",
+      "category": "coding",
+      "benchmark_refs": [],
+      "prompt": "Write a Python function count_csv_rows(text) that counts non-empty data rows in a CSV string while ignoring the header row.",
+      "expected_terms": ["def", "count_csv_rows", "header", "non-empty"]
+    },
+    {
+      "prompt_case_id": "coding-003",
+      "title": "Dictionary Merge",
+      "category": "coding",
+      "benchmark_refs": [],
+      "prompt": "Write a Python function merge_counts(left, right) that returns a new dictionary with numeric values added for matching keys.",
+      "expected_terms": ["def", "merge_counts", "dictionary", "add"]
+    },
+    {
+      "prompt_case_id": "coding-004",
+      "title": "Input Validation",
+      "category": "coding",
+      "benchmark_refs": [],
+      "prompt": "Write a Python function require_positive(value) that returns the value when it is greater than zero and raises ValueError otherwise.",
+      "expected_terms": ["require_positive", "ValueError", "greater", "zero"]
+    },
+    {
+      "prompt_case_id": "reasoning-001",
+      "title": "Project Tradeoff Explanation",
+      "category": "reasoning",
+      "benchmark_refs": [],
+      "prompt": "Explain two tradeoffs between optimizing for development speed and optimizing for long-term maintainability in a small software project.",
+      "expected_terms": ["speed", "maintainability", "tradeoff", "long-term"]
+    },
+    {
+      "prompt_case_id": "reasoning-002",
+      "title": "Sequence Pattern",
+      "category": "reasoning",
+      "benchmark_refs": [],
+      "prompt": "A sequence starts at 2 and each term is three more than twice the previous term. What are the next three terms after 2? Show your reasoning.",
+      "expected_terms": ["7", "17", "37", "reasoning"]
+    },
+    {
+      "prompt_case_id": "reasoning-003",
+      "title": "Root Cause Analysis",
+      "category": "reasoning",
+      "benchmark_refs": [],
+      "prompt": "A nightly data import succeeds on weekdays but fails every Saturday. List three plausible causes and a test for each cause.",
+      "expected_terms": ["Saturday", "cause", "test", "schedule"]
+    },
+    {
+      "prompt_case_id": "reasoning-004",
+      "title": "Constraint Planning",
+      "category": "reasoning",
+      "benchmark_refs": [],
+      "prompt": "You have 6 hours to complete documentation, testing, and cleanup. Testing takes twice as long as cleanup, and documentation takes one hour less than testing. Allocate the time.",
+      "expected_terms": ["cleanup", "testing", "documentation", "1.4"]
+    },
+    {
+      "prompt_case_id": "hybrid-001",
+      "title": "Algorithm and Explanation",
+      "category": "hybrid",
+      "benchmark_refs": [],
+      "prompt": "Write pseudocode for removing duplicate strings while preserving order, then explain its time complexity.",
+      "expected_terms": ["duplicate", "order", "set", "complexity"]
+    },
+    {
+      "prompt_case_id": "hybrid-002",
+      "title": "Bug Fix Rationale",
+      "category": "hybrid",
+      "benchmark_refs": [],
+      "prompt": "Given a function that divides total by count, describe how you would prevent divide-by-zero errors and provide a short code snippet.",
+      "expected_terms": ["zero", "count", "error", "snippet"]
+    },
+    {
+      "prompt_case_id": "hybrid-003",
+      "title": "Data Model Design",
+      "category": "hybrid",
+      "benchmark_refs": [],
+      "prompt": "Design a small JSON object for tracking a model evaluation case and explain why each field is useful.",
+      "expected_terms": ["JSON", "prompt", "expected", "score"]
+    },
+    {
+      "prompt_case_id": "hybrid-004",
+      "title": "Regex and Explanation",
+      "category": "hybrid",
+      "benchmark_refs": [],
+      "prompt": "Provide a regular expression that matches simple kebab-case identifiers and explain one limitation of the expression.",
+      "expected_terms": ["regex", "kebab", "limitation", "lowercase"]
+    },
+    {
+      "prompt_case_id": "coding-005",
+      "title": "Repository Issue Resolution Plan",
+      "category": "coding",
+      "benchmark_refs": ["SWE-bench Verified"],
+      "prompt": "A Python package fails when a config file contains a blank line because parse_config assumes every line contains '='. Describe the bug, propose a minimal patch, and include one regression test case.",
+      "expected_terms": ["blank", "line", "skip", "test"]
+    },
+    {
+      "prompt_case_id": "coding-006",
+      "title": "Production Regression Root Cause",
+      "category": "coding",
+      "benchmark_refs": ["SWE-bench Pro"],
+      "prompt": "A web service intermittently returns duplicate records after a pagination refactor. Give a debugging plan, the likely boundary-condition bug, and a concise test that would catch it.",
+      "expected_terms": ["pagination", "boundary", "duplicate", "test"]
+    },
+    {
+      "prompt_case_id": "coding-007",
+      "title": "Function Synthesis Under Constraints",
+      "category": "coding",
+      "benchmark_refs": ["HumanEval", "LiveCodeBench"],
+      "prompt": "Write a Python function longest_balanced_prefix(text) that returns the longest prefix where parentheses are balanced. Include short examples for empty input, balanced input, and an early unmatched closing parenthesis.",
+      "expected_terms": ["def", "longest_balanced_prefix", "balance", "prefix"]
+    },
+    {
+      "prompt_case_id": "reasoning-005",
+      "title": "Contest Math and Pattern Abstraction",
+      "category": "reasoning",
+      "benchmark_refs": ["AIME", "ARC-AGI-2"],
+      "prompt": "A machine transforms each row of three numbers by replacing the third number with the sum of the first two minus their greatest common divisor. For rows (6, 10, ?), (8, 12, ?), and (9, 15, ?), compute the missing values and explain the rule.",
+      "expected_terms": ["14", "16", "21", "gcd"]
+    },
+    {
+      "prompt_case_id": "reasoning-006",
+      "title": "Expert Science QA Justification",
+      "category": "reasoning",
+      "benchmark_refs": ["GPQA Diamond"],
+      "prompt": "A sealed ideal-gas container is heated while volume stays constant. Which quantity must increase: pressure, volume, mole count, or gas constant? Answer with the quantity and a one-sentence justification.",
+      "expected_terms": ["pressure", "constant", "volume", "temperature"]
+    }
+  ]
+}
